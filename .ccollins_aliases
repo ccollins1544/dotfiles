@@ -1,0 +1,27 @@
+# GLOBALS
+export gitpath='/d/gitlab'
+
+# My Aliases
+alias bak='cd /d/bak'
+alias www='cd /d/websites'
+alias bc='cd ~/bootcamp_local/'
+alias down='cd ~/Downloads'
+alias desk='cd ~/Desktop'
+alias docs='cd ~/Documents'
+alias repos='cd /d/gitlab'
+
+# GIT
+alias gs='git status'
+alias gp='git pull'
+alias ga='git add -A'
+alias gac='git add -A && git commit -m '
+alias gpush='git push'
+alias gal='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias gl='git log --graph'
+alias gu='cd $gitpath && for d in $(ls); do cd $gitpath/$d; echo $d; git pull; cd $gitpath; done';
+alias source='source ~/.bash_profile'
+
+# RSYNC 
+alias rs='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --exclude=".vscode"'
+alias rsdel='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --delete --exclude=".vscode"'
+
