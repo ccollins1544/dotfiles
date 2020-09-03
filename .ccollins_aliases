@@ -24,6 +24,17 @@ alias gu='cd $gitpath && for d in $(ls); do cd $gitpath/$d; echo $d; git pull; c
 alias _gu='cd ~/bootcamp_local/ && for d in $(ls); do cd ~/bootcamp_local/$d; echo $d; git pull; cd ~/bootcamp_local/; done';
 alias acp=git_add_commit_push
 
+# GIT ALIASES ~/.ssh/my_rsa
+alias _gclone='git_ssh_command git clone '
+alias _gs='git_ssh_command git status'
+alias _gp='git_ssh_command git pull'
+alias _ga='git_ssh_command git add -A'
+alias _gac='git_ssh_command git add -A && git commit -m '
+alias _gpush='git_ssh_command git push'
+alias _gal='git_ssh_command git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias _gl='git_ssh_command git log --graph'
+alias _acp='git_ssh_command git_add_commit_push'
+
 # RSYNC 
 alias rs='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --exclude=".vscode"'
 alias rsdel='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --delete --exclude=".vscode"'
@@ -34,12 +45,13 @@ alias pullsites='sh ~/rsync_websites.sh'
 ###################
 # git add/commit/push
 git_add_commit_push() {
-  set -x
-
  git add .
  git commit -m "$*"
  git push
+}
 
- set +x
+# git with specific ssh-key
+git_ssh_command(){
+  ssh-agent bash -c "ssh-add ~/.ssh/my_rsa; $*"
 }
 
