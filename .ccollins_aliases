@@ -31,8 +31,6 @@ alias _gp='git_ssh_command git pull'
 alias _ga='git_ssh_command git add -A'
 alias _gac='git_ssh_command git add -A && git commit -m '
 alias _gpush='git_ssh_command git push'
-alias _gal='git_ssh_command git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
-alias _gl='git_ssh_command git log --graph'
 alias _acp='git_ssh_command git_add_commit_push'
 
 # RSYNC 
