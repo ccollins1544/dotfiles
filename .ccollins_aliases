@@ -55,6 +55,7 @@ alias nb="npm run build"
 alias nd="npm run deploy"
 alias na="npm audit fix"
 alias nf="npm fund"
+alias ng="npm list -g --depth 0"
 
 ###################
 # Functions
