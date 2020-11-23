@@ -1,0 +1,24 @@
+name: Deploy Beta
+
+on:
+  push:
+    branches: [ beta ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            pm2 stop my_app_name
+            cd ~/my_app_name/source
+            git pull
+            npm install
+            node --trace-warnings scripts/init.js
+            pm2 start ~/ecosystem.config.js --only my_app_name --env development

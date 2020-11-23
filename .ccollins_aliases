@@ -18,11 +18,11 @@ alias rsdel='rsync -avzruc --stats --progress --no-perms --no-owner --no-group -
 alias pullsites='sh ~/rsync_websites.sh'
 
 # Start Programs 
-alias opene="start chrome http://localhost:5000"
-alias openr="start chrome http://localhost:3000"
-alias open1="start chrome http://localhost:3001"
-alias open2="start chrome http://localhost:3002"
-alias open3="start chrome http://localhost:3003"
+alias opene="open_chrome http://localhost:5000"
+alias openr="open_chrome http://localhost:3000"
+alias open1="open_chrome http://localhost:3001"
+alias open2="open_chrome http://localhost:3002"
+alias open3="open_chrome http://localhost:3003"
 alias _alias="start notepad++ ~/.ccollins_aliases"
 
 # GIT ALIASES
@@ -49,14 +49,14 @@ alias _gpush='git_ssh_command git push'
 alias _acp='git_ssh_command git_add_commit_push'
 
 # npm 
-alias nseed="npm run seed"
-alias ns="npm run start"
-alias ni="npm install"
-alias nb="npm run build"
-alias nd="npm run deploy"
-alias na="npm audit fix"
-alias nf="npm fund"
-alias nl="npm list -g --depth 0"
+alias ni='npm install'
+alias nb='npm run build'
+alias nd='npm run deploy'
+alias ns='npm run start'
+alias nseed='npm run seed'
+alias na='npm audit fix'
+alias nf='npm fund'
+alias nl='npm list -g --depth 0'
 
 ###################
 # Functions
@@ -76,7 +76,12 @@ git_ssh_command(){
 # git connect existing local repository to new remote repo 
 git_remote_add() {
   git remote add origin "$*"
-  git branch -M master
-  git push -u origin master
+  git branch -M main
+  git push -u origin main
+}
+
+# open chrome site
+open_chrome(){
+  start chrome "$*"
 }
 
