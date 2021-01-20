@@ -1,29 +1,28 @@
 # GLOBALS
-export gitpath='/d/gitlab'
+export gitpath='/d/repos'
 
 ###################
 # My Aliases
 ###################
-alias source='source ~/.bash_profile'
+alias src='source ~/.bash_profile'
 
 # MISC
 alias down='cd ~/Downloads'
 alias desk='cd ~/Desktop'
 alias docs='cd ~/Documents'
-alias repos='cd /d/gitlab'
 
 # RSYNC 
 alias rs='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --exclude=".vscode"'
 alias rsdel='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --delete --exclude=".vscode"'
 alias pullsites='sh ~/rsync_websites.sh'
 
-# Start Programs 
-alias opene="open_chrome http://localhost:5000"
-alias openr="open_chrome http://localhost:3000"
-alias open1="open_chrome http://localhost:3001"
-alias open2="open_chrome http://localhost:3002"
-alias open3="open_chrome http://localhost:3003"
-alias _alias="start notepad++ ~/.ccollins_aliases"
+# Open Programs
+alias opene='open_chrome "http://localhost:5000"'
+alias openr='open_chrome "http://localhost:3000"'
+alias openr1='open_chrome "http://localhost:3001"'
+alias openr2='open_chrome "http://localhost:3002"'
+alias openr3='open_chrome "http://localhost:3003"'
+alias _alias='start notepad++ ~/.ccollins_aliases'
 
 # GIT ALIASES
 alias gs='git status'
@@ -34,7 +33,7 @@ alias gpush='git push'
 alias gal='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 alias gl='git log --graph'
 alias gu='cd $gitpath && for d in $(ls); do cd $gitpath/$d; echo $d; git pull; cd $gitpath; done';
-alias _gu='cd ~/bootcamp_local/ && for d in $(ls); do cd ~/bootcamp_local/$d; echo $d; git pull; cd ~/bootcamp_local/; done';
+alias _gu='cd ~/_/ && for d in $(ls); do cd ~/_/$d; echo $d; git pull; cd ~/_/; done';
 alias acp=git_add_commit_push
 alias gclone='git clone'
 alias gra=git_remote_add
@@ -48,11 +47,15 @@ alias _gac='git_ssh_command git add -A && git commit -m '
 alias _gpush='git_ssh_command git push'
 alias _acp='git_ssh_command git_add_commit_push'
 
-# npm 
+# RSYNC 
+alias rs='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --exclude=".vscode"'
+alias rsdel='rsync -avzruc --stats --progress --no-perms --no-owner --no-group --delete --exclude=".vscode"'
+
+# NPM Aliases
 alias ni='npm install'
 alias nb='npm run build'
 alias nd='npm run deploy'
-alias ns='npm run start'
+alias ns='npm run init && npm run start'
 alias nseed='npm run seed'
 alias na='npm audit fix'
 alias nf='npm fund'
@@ -70,7 +73,7 @@ git_add_commit_push() {
 
 # git with specific ssh-key
 git_ssh_command(){
-  ssh-agent bash -c "ssh-add ~/.ssh/my_rsa; $*"
+  ssh-agent bash -c "ssh-add ~/.ssh/my_rsa_private_key; $*"
 }
 
 # git connect existing local repository to new remote repo 
@@ -85,3 +88,24 @@ open_chrome(){
   start chrome "$*"
 }
 
+# SSH NO PASSWORD
+# Usage: ssh_nopass <$1-Server-Private-Key-Path> <$2-My-Public-Key-Path> <$3-User> <$4-Server> 
+ssh_nopass() {
+  echo "Adding your Key to $4"
+  echo "Your Key: $2"
+  cat "$2" | ssh -i "$1" $3@$4 'cat >> ~/.ssh/authorized_keys'
+}
+
+#############################
+# Custom to only me   
+#############################
+# My Servers
+alias beta='ssh -i ~/.ssh/my_rsa_private_key my_user@my-server.com'
+
+# My PATHS 
+alias r='cd /d/repos'
+alias _='cd /d/_'
+
+# Local Databases 
+alias pg='PGPASSWORD=$(cat ~/.dbpass) psql -U postgres' 
+alias pgc='PGPASSWORD=$(cat ~/.dbpass) psql postgres my_user'
