@@ -24,6 +24,7 @@ alias openr1='open_chrome "http://localhost:3001"'
 alias openr2='open_chrome "http://localhost:3002"'
 alias openr3='open_chrome "http://localhost:3003"'
 alias _alias='start notepad++ ~/.ccollins_aliases'
+alias _hosts='start notepad++ "C:\WINDOWS\System32\drivers\etc\hosts"'
 
 # GIT ALIASES
 alias gs='git status'
