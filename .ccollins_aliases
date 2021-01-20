@@ -1,5 +1,6 @@
 # GLOBALS
 export gitpath='/d/repos'
+export ACTIVE_SERVERS="ubuntu@server1.com server2.com server3.com" 
 
 ###################
 # My Aliases
@@ -96,11 +97,19 @@ ssh_nopass() {
   cat "$2" | ssh -i "$1" $3@$4 'cat >> ~/.ssh/authorized_keys'
 }
 
+# Runs updates on our server
+update_server() {
+  ssh $1 'sudo apt update && sudo apt upgrade -y && sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y'
+}
+
 #############################
 # Custom to only me   
 #############################
 # My Servers
 alias beta='ssh -i ~/.ssh/my_rsa_private_key my_user@my-server.com'
+
+# Update All Servers
+alias update_all='for s in $ACTIVE_SERVERS; do update_server $s; done;'
 
 # My PATHS 
 alias r='cd /d/repos'
@@ -109,3 +118,4 @@ alias _='cd /d/_'
 # Local Databases 
 alias pg='PGPASSWORD=$(cat ~/.dbpass) psql -U postgres' 
 alias pgc='PGPASSWORD=$(cat ~/.dbpass) psql postgres my_user'
+
