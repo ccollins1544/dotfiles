@@ -1,6 +1,6 @@
 # GLOBALS
 export gitpath='/d/repos'
-export ACTIVE_SERVERS="ubuntu@server1.com server2.com server3.com" 
+export ACTIVE_SERVERS="ubuntu@server1.com ubuntu@server2.com ubuntu@server3.com" 
 
 ###################
 # My Aliases
