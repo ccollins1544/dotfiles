@@ -110,7 +110,7 @@ update_server() {
 alias beta='ssh -i ~/.ssh/my_rsa_private_key my_user@my-server.com'
 
 # Update All Servers
-alias update_all='for s in $ACTIVE_SERVERS; do update_server $s; done;'
+alias update_all='for s in $ACTIVE_SERVERS; do echo "Updating $s"; update_server $s; done;'
 
 # My PATHS 
 alias r='cd /d/repos'
